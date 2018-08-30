@@ -20,6 +20,27 @@ fn node_builder(name: char) -> Node{
     }
 }
 
+fn shortest_path(graph: &Vec<Node>, start: char, finish: char, result: &i8){
+    // let mut i8 result = 0;
+    let mut temp_graph = Vec::new();
+    let mut exists: bool = false;
+    let mut end: bool = false;
+    for i in graph {
+        match i.name {
+            start => exists = true,
+            finish => end = true,
+            _ => {
+                let mut node = node_builder(i.name);
+                for connects in &i.connections {
+                    node.add_connection(*connects);
+                }
+                temp_graph.push(node);
+            }
+
+        }
+    }
+}
+
 /////////////////
 ////// main /////
 /////////////////
@@ -39,6 +60,8 @@ fn main() {
     graph.push(node_b);
     graph.push(node_c);
 
+    //graph printing
+
     let mut index_i = 0;
     let mut index_j = 0;
 
@@ -53,5 +76,12 @@ fn main() {
         index_j = 0;
         index_i = index_i + 1; 
     }
+
+
+    //distance calculation
+
+    let mut result: i8 = 0;
+
+    println!("Result: {}", result);
     println!("\n\nExiting Main");
 }
