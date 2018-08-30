@@ -1,0 +1,6 @@
+[package]
+name = "graph-path"
+version = "0.1.0"
+authors = ["Dustin <dustin.tran@live.com>"]
+
+[dependencies]
