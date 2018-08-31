@@ -20,26 +20,40 @@ fn node_builder(name: char) -> Node{
     }
 }
 
-fn shortest_path(graph: &Vec<Node>, start: char, finish: char, result: &i8){
-    // let mut i8 result = 0;
-    let mut temp_graph = Vec::new();
-    let mut exists: bool = false;
-    let mut end: bool = false;
-    for i in graph {
-        match i.name {
-            start => exists = true,
-            finish => end = true,
-            _ => {
-                let mut node = node_builder(i.name);
-                for connects in &i.connections {
-                    node.add_connection(*connects);
-                }
-                temp_graph.push(node);
-            }
+// fn shortest_path<'a>(graph: &Vec<Node>, start: char, finish: char, steps: &'a i8, result: &'a mut i8){
+//     // let mut i8 result = 0;
+//     let mut temp_graph = Vec::new();
+//     let mut exists: bool = false;
+//     let mut end: bool = false;
+//     for i in graph {
+//         match i.name {
+//             start => exists = true,
+//             finish => end = true,
+//             _ => {
+//                 let mut node = node_builder(i.name);
+//                 for connects in &i.connections {
+//                     node.add_connection(*connects);
+//                 }
+//                 temp_graph.push(node);
+//             }
 
-        }
-    }
-}
+//         }
+//     }
+//     if exists && !end {
+//         for i in graph {
+//             if i.name != start {
+//                 steps = &(steps + 1);
+//                 shortest_path(&temp_graph, i.name, finish, steps, result);
+//                 steps = &(steps - 1);
+//             }
+//         }
+//     }
+//     if end {
+//         if steps < result {
+//             result = &(steps);
+//         }
+//     }
+// }
 
 /////////////////
 ////// main /////
@@ -80,7 +94,8 @@ fn main() {
 
     //distance calculation
 
-    let mut result: i8 = 0;
+    let mut result: i8 = 32;
+    let mut steps: i8 = 0;
 
     println!("Result: {}", result);
     println!("\n\nExiting Main");
